@@ -1,0 +1,13 @@
+import fs from "node:fs";
+import {extractFigures,scanSignals} from "../src/engine/extract.js";
+import {analyze,dcf} from "../src/engine/analyze.js";
+const pages=JSON.parse(fs.readFileSync("/tmp/pages.json"));
+const e=extractFigures(pages);
+const R=analyze({fields:e.fields,price:{cur:12.6,prev:11.1},signals:scanSignals(pages),company:"Cable Solutions PLC"});
+console.log(R.verdict);
+console.log(R.checks.map(c=>c.status.padEnd(8)+c.title).join("\n"));
+console.log(R.qoe.rows.map(r=>r.join(" | ")).join("\n"));
+console.log("Piotroski",R.qoe.piotroski.score,"Z",R.qoe.altman.z.toFixed(2));
+console.log(R.bridge);
+console.log(R.dcf);
+for(const w of[.12,.14])console.log(w,dcf(R.dcf.inputs,{...R.dcf.base,w}).perShare.toFixed(2));

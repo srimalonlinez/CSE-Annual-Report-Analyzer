@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+[functions]
+  node_bundler = "esbuild"
+[[redirects]]
+  from = "/api/analyze"
+  to = "/.netlify/functions/analyze"
+  status = 200
+[[redirects]]
+  from = "/api/status"
+  to = "/.netlify/functions/status"
+  status = 200
+[[redirects]]
+  from = "/api/checkout"
+  to = "/.netlify/functions/checkout"
+  status = 200
+[[redirects]]
+  from = "/api/payhere-notify"
+  to = "/.netlify/functions/payhere-notify"
+  status = 200
