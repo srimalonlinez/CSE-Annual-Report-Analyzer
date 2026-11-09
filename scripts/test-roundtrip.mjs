@@ -1,7 +1,8 @@
-import fs from "node:fs";
+import fs from "node:fs";import os from "node:os";import path from "node:path";
+const PAGES=path.join(os.tmpdir(),"cse-pages.json");
 import {extractFigures,scanSignals} from "../src/engine/extract.js";
 import {analyze,dcf} from "../src/engine/analyze.js";
-const pages=JSON.parse(fs.readFileSync("/tmp/pages.json"));
+const pages=JSON.parse(fs.readFileSync(PAGES));
 const e=extractFigures(pages);
 for(const withPrice of [true,false]){
   const body=JSON.parse(JSON.stringify({fields:Object.fromEntries(Object.entries(e.fields).map(([k,o])=>[k,{cur:String(+o.cur.toFixed(3)),prev:String(+o.prev.toFixed(3))}])),price:withPrice?{cur:"12.6",prev:"11.1"}:{cur:"",prev:""},signals:scanSignals(pages)}));

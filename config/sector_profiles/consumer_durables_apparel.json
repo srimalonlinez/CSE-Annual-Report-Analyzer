@@ -1,0 +1,124 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "consumer_durables_apparel",
+  "display_name": "Consumer Durables & Apparel",
+  "gics": "Consumer Durables & Apparel",
+  "reference_report": {
+    "file": "Consumer Durables & Apparel.pdf",
+    "company": "Ambeon Holdings PLC",
+    "period": "Annual Report 2025/26"
+  },
+  "business_models": [
+    {
+      "id": "diversified_group",
+      "label": "Diversified group / holding",
+      "engine": "industrial",
+      "diversified": true,
+      "warnings": [
+        "Diversified group: keep segment facts separate from consolidated figures; enter segments in the review step."
+      ]
+    },
+    {
+      "id": "apparel_manufacturer",
+      "label": "Apparel / textile manufacturer",
+      "engine": "industrial"
+    },
+    {
+      "id": "durables_manufacturer_trader",
+      "label": "Consumer durables manufacturer or trader",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "performance_highlights",
+    "group_structure",
+    "macroeconomic_review",
+    "mdna",
+    "risk_management",
+    "financial_statements",
+    "decade_at_a_glance"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "gross_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "interest_cover"
+    },
+    {
+      "ref": "roce"
+    },
+    {
+      "ref": "roe"
+    },
+    {
+      "ref": "inventory_days"
+    },
+    {
+      "ref": "receivable_days"
+    },
+    {
+      "ref": "payable_days"
+    },
+    {
+      "ref": "cash_conversion_cycle"
+    },
+    {
+      "id": "export_share",
+      "label": "Export revenue share",
+      "category": "segments",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Export revenue share"
+      ]
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "ev_ebitda"
+    ],
+    "conditional": [
+      "sum_of_parts",
+      "earnings_multiple"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Group-level sample: inspect the actual subsidiaries before applying consumer-durables benchmarks.",
+    "Do not compare holding/investment segments with manufacturing segments on the same ratios."
+  ],
+  "questions": [
+    "Which subsidiaries drive group results, and what are their margins?",
+    "How exposed are input costs and demand to currency movements?"
+  ]
+}

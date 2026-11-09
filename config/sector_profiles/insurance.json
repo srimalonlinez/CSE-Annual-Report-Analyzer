@@ -1,0 +1,437 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "id": "insurance",
+  "display_name": "Insurance",
+  "gics": "Insurance",
+  "reference_report": {
+    "file": "Insurance.pdf",
+    "company": "HNB Assurance PLC",
+    "period": "Annual Report"
+  },
+  "business_models": [
+    {
+      "id": "composite_insurer",
+      "label": "Composite (life and general) insurer",
+      "engine": "insurer"
+    },
+    {
+      "id": "life_insurer",
+      "label": "Life insurer",
+      "engine": "insurer"
+    },
+    {
+      "id": "general_insurer",
+      "label": "General (non-life) insurer",
+      "engine": "insurer",
+      "general": true
+    },
+    {
+      "id": "insurance_holding",
+      "label": "Insurance holding company",
+      "engine": "insurer"
+    }
+  ],
+  "sections_to_inspect": [
+    "financial_highlights",
+    "life_actuary_report",
+    "ibnr_certification",
+    "life_insurance_fund_statements",
+    "insurance_revenue_account",
+    "takaful_analysis",
+    "slfrs17_disclosures",
+    "risk_management",
+    "financial_statements",
+    "decade_at_a_glance"
+  ],
+  "metrics": [
+    {
+      "id": "gross_written_premium",
+      "label": "Gross written premium",
+      "category": "premium",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Gross written premium",
+        "GWP"
+      ],
+      "interpretation": "Not the same as insurance revenue under SLFRS 17."
+    },
+    {
+      "id": "life_gwp",
+      "label": "Life gross written premium",
+      "category": "premium",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Life gross written premium"
+      ]
+    },
+    {
+      "id": "general_gwp",
+      "label": "General gross written premium",
+      "category": "premium",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "General gross written premium"
+      ]
+    },
+    {
+      "id": "insurance_revenue",
+      "label": "Insurance revenue",
+      "category": "insurance_result",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "insurance_revenue",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Insurance revenue"
+      ]
+    },
+    {
+      "id": "insurance_revenue_growth",
+      "label": "Insurance revenue growth",
+      "category": "insurance_result",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "insurance_revenue_growth",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Insurance revenue growth"
+      ]
+    },
+    {
+      "id": "insurance_service_result",
+      "label": "Insurance service result",
+      "category": "insurance_result",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "isr",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Insurance service result"
+      ]
+    },
+    {
+      "id": "insurance_service_margin",
+      "label": "Insurance service result / insurance revenue",
+      "category": "insurance_result",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "isr_margin",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Insurance service result / insurance revenue"
+      ]
+    },
+    {
+      "id": "net_reinsurance_result",
+      "label": "Net result from reinsurance held",
+      "category": "insurance_result",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "reinsurance_net",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Net result from reinsurance held"
+      ]
+    },
+    {
+      "id": "combined_ratio",
+      "label": "Combined ratio (SLFRS 17 basis)",
+      "category": "insurance_result",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "combined_ratio",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Combined ratio (SLFRS 17 basis)"
+      ],
+      "applies_when": "General insurance only, when insurance service expenses and reinsurance result are both available.",
+      "formula": "(insurance service expenses - net reinsurance result) / insurance revenue"
+    },
+    {
+      "id": "investment_income",
+      "label": "Investment income",
+      "category": "investments",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "investment_income",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Investment income"
+      ]
+    },
+    {
+      "id": "insurance_finance_result",
+      "label": "Net insurance finance income / expense",
+      "category": "investments",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "insurance_finance",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Net insurance finance income / expense"
+      ]
+    },
+    {
+      "id": "investment_yield",
+      "label": "Investment yield",
+      "category": "investments",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Investment yield"
+      ]
+    },
+    {
+      "id": "insurance_contract_liabilities",
+      "label": "Insurance contract liabilities",
+      "category": "balance_sheet",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "icl",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Insurance contract liabilities"
+      ],
+      "interpretation": "Policyholder obligations, not corporate debt."
+    },
+    {
+      "id": "life_fund",
+      "label": "Life insurance fund",
+      "category": "balance_sheet",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Life insurance fund"
+      ]
+    },
+    {
+      "id": "ibnr_reserve",
+      "label": "IBNR / IBNER reserves",
+      "category": "balance_sheet",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "IBNR / IBNER reserves"
+      ]
+    },
+    {
+      "id": "solvency_life",
+      "label": "Risk-based capital adequacy ratio - life",
+      "category": "capital",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "CAR - Life",
+        "Risk based capital adequacy ratio"
+      ]
+    },
+    {
+      "id": "solvency_general",
+      "label": "Risk-based capital adequacy ratio - general",
+      "category": "capital",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Risk-based capital adequacy ratio - general"
+      ]
+    },
+    {
+      "id": "roe",
+      "label": "Return on equity",
+      "category": "profitability",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "roe",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Return on equity"
+      ]
+    },
+    {
+      "id": "roa",
+      "label": "Return on assets",
+      "category": "profitability",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "roa",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Return on assets"
+      ]
+    },
+    {
+      "id": "bvps",
+      "label": "Book value per share",
+      "category": "shareholder",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "bvps",
+      "unit": "per_share",
+      "scope": "group_or_company",
+      "aliases": [
+        "Book value per share"
+      ]
+    },
+    {
+      "id": "eps",
+      "label": "Earnings per share",
+      "category": "shareholder",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "eps",
+      "unit": "per_share",
+      "scope": "group_or_company",
+      "aliases": [
+        "Earnings per share"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "growth",
+      "title": "Insurance revenue growth",
+      "metric": "insurance_revenue_growth",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.05,
+      "concern": 0,
+      "points": [
+        "insurance_revenue",
+        "gross_written_premium"
+      ]
+    },
+    {
+      "id": "underwriting",
+      "title": "Insurance service result",
+      "metric": "insurance_service_margin",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.08,
+      "concern": 0,
+      "points": [
+        "insurance_service_result",
+        "net_reinsurance_result",
+        "combined_ratio"
+      ]
+    },
+    {
+      "id": "investments",
+      "title": "Investment contribution",
+      "metric": "investment_income",
+      "type": "growth",
+      "direction": "higher_better",
+      "watch": 0,
+      "concern": -0.1,
+      "points": [
+        "insurance_finance_result",
+        "investment_yield"
+      ]
+    },
+    {
+      "id": "solvency",
+      "title": "Solvency",
+      "metric": "solvency_life",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 1.6,
+      "concern": 1.2,
+      "points": [],
+      "note": "Uses the life ratio, or the general ratio when life is not available. Regulatory minimum RBC ratio is 120%; thresholds above it are judgement calls.",
+      "fallback": "solvency_general",
+      "fallback_watch": 1.6,
+      "fallback_concern": 1.2
+    },
+    {
+      "id": "returns",
+      "title": "Returns",
+      "metric": "roe",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.12,
+      "concern": 0.08,
+      "points": [
+        "roa"
+      ]
+    },
+    {
+      "id": "reserving",
+      "title": "Reserving and actuarial assumptions",
+      "type": "manual",
+      "points": [
+        "Read the actuary's report and IBNR/IBNER certification; check changes in assumptions."
+      ]
+    }
+  ],
+  "prohibited_generic_metrics": [
+    "current_ratio",
+    "inventory_days",
+    "net_debt_to_ebitda",
+    "fcff_dcf",
+    "gwp_as_insurance_revenue"
+  ],
+  "valuation_methods": {
+    "preferred": [
+      "price_to_book",
+      "residual_income"
+    ],
+    "conditional": [
+      "dividend_discount",
+      "earnings_multiple"
+    ],
+    "avoid_as_default": [
+      "dcf_fcff"
+    ]
+  },
+  "cautions": [
+    "Never equate insurance revenue with gross written premium.",
+    "Profile life and general business separately.",
+    "Insurance contract liabilities are not corporate debt."
+  ],
+  "questions": [
+    "How did the contractual service margin (CSM) move, and what drove it?",
+    "How sensitive is the life fund to interest-rate changes?",
+    "What changed in actuarial assumptions this year?"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "health_care",
+  "display_name": "Health Care Equipment & Services",
+  "gics": "Health Care Equipment & Services",
+  "reference_report": {
+    "file": "Health Care Equipment & Services.pdf",
+    "company": "Asiri Surgical Hospital PLC",
+    "period": "Annual Report 2025/26"
+  },
+  "business_models": [
+    {
+      "id": "hospital_operator",
+      "label": "Hospital operator",
+      "engine": "industrial"
+    },
+    {
+      "id": "equipment_distributor",
+      "label": "Medical equipment maker / distributor",
+      "engine": "industrial"
+    },
+    {
+      "id": "other_healthcare_services",
+      "label": "Other healthcare services",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "financial_highlights",
+    "chairman_review",
+    "operational_review",
+    "risk_management",
+    "financial_statements",
+    "investor_information"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "receivable_days"
+    },
+    {
+      "ref": "roce"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "id": "beds",
+      "label": "Bed capacity",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Bed capacity"
+      ]
+    },
+    {
+      "id": "bed_occupancy",
+      "label": "Bed occupancy",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Bed occupancy"
+      ],
+      "interpretation": "Never inferred from revenue."
+    },
+    {
+      "id": "patient_volumes",
+      "label": "Patient volumes",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Patient volumes"
+      ]
+    },
+    {
+      "id": "procedures",
+      "label": "Surgical / diagnostic procedures",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Surgical / diagnostic procedures"
+      ]
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "ev_ebitda"
+    ],
+    "conditional": [
+      "earnings_multiple"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Identify the business model: hospital operator vs equipment or distribution.",
+    "Separate operating performance from major expansion capex."
+  ],
+  "questions": [
+    "How did patient volumes and revenue per patient change?",
+    "How exposed are receivables to insurers and corporate debtors?"
+  ]
+}

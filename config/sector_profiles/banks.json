@@ -1,0 +1,572 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "id": "banks",
+  "display_name": "Banks",
+  "gics": "Banks",
+  "reference_report": {
+    "file": "Banks.pdf",
+    "company": "Hatton National Bank PLC",
+    "period": "Annual Report 2025"
+  },
+  "business_models": [
+    {
+      "id": "licensed_commercial_bank",
+      "label": "Licensed commercial bank",
+      "engine": "lending"
+    },
+    {
+      "id": "licensed_specialised_bank",
+      "label": "Licensed specialised bank",
+      "engine": "lending"
+    }
+  ],
+  "sections_to_inspect": [
+    "financial_highlights",
+    "non_financial_highlights",
+    "chairman_message",
+    "md_ceo_review",
+    "risk_and_capital_review",
+    "financial_statements",
+    "notes",
+    "five_ten_year_summary"
+  ],
+  "metrics": [
+    {
+      "id": "gross_income",
+      "label": "Gross income",
+      "category": "income_composition",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "gross_income",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Gross income"
+      ]
+    },
+    {
+      "id": "net_interest_income",
+      "label": "Net interest income",
+      "category": "income_composition",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "nii",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Net interest income"
+      ]
+    },
+    {
+      "id": "net_fee_income",
+      "label": "Net fee and commission income",
+      "category": "income_composition",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "net_fee_income",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Net fee and commission income"
+      ]
+    },
+    {
+      "id": "total_operating_income",
+      "label": "Total operating income",
+      "category": "income_composition",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "toi",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Total operating income"
+      ]
+    },
+    {
+      "id": "fee_share",
+      "label": "Fee and commission share of operating income",
+      "category": "income_composition",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "fee_share",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Fee and commission share of operating income"
+      ],
+      "formula": "net_fee_income / total_operating_income"
+    },
+    {
+      "id": "impairment_charge",
+      "label": "Impairment charges",
+      "category": "asset_quality",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "impairment",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Impairment charges"
+      ]
+    },
+    {
+      "id": "credit_cost",
+      "label": "Impairment charge / gross loans",
+      "category": "asset_quality",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "credit_cost",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Impairment charge / gross loans"
+      ],
+      "formula": "impairment_charge / gross_loans (year-end)"
+    },
+    {
+      "id": "stage_3_ratio",
+      "label": "Impaired loans (Stage 3) ratio",
+      "category": "asset_quality",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Impaired loans (Stage 3) ratio",
+        "Stage 3 loans ratio",
+        "NPL ratio"
+      ],
+      "interpretation": "Use the bank's own definition; do not compare with NPL ratios defined differently."
+    },
+    {
+      "id": "stage_3_coverage",
+      "label": "Impairment coverage of Stage 3 loans",
+      "category": "asset_quality",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Stage 3 impairment coverage",
+        "Impairment cover - Stage 3"
+      ]
+    },
+    {
+      "id": "operating_expenses",
+      "label": "Operating expenses",
+      "category": "efficiency",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "opex",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Operating expenses"
+      ]
+    },
+    {
+      "id": "cost_to_income",
+      "label": "Cost-to-income ratio",
+      "category": "efficiency",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "cost_to_income",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Cost-to-income ratio"
+      ],
+      "formula": "operating_expenses / total_operating_income",
+      "interpretation": "Banks may exclude taxes on financial services; prefer the reported ratio when entered."
+    },
+    {
+      "id": "reported_nim",
+      "label": "Net interest margin (reported)",
+      "category": "profitability",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Net interest margin",
+        "NIM"
+      ]
+    },
+    {
+      "id": "nii_to_assets",
+      "label": "Net interest income / total assets",
+      "category": "profitability",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "nii_to_assets",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Net interest income / total assets"
+      ],
+      "formula": "net_interest_income / year-end total assets",
+      "interpretation": "A proxy only. Reported NIM uses average interest-earning assets and will differ."
+    },
+    {
+      "id": "roa",
+      "label": "Return on assets",
+      "category": "profitability",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "roa",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Return on assets"
+      ]
+    },
+    {
+      "id": "roe",
+      "label": "Return on equity",
+      "category": "profitability",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "roe",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Return on equity"
+      ]
+    },
+    {
+      "id": "gross_loans",
+      "label": "Gross loans and advances",
+      "category": "balance_sheet",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "loans",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Gross loans and advances"
+      ]
+    },
+    {
+      "id": "loan_growth",
+      "label": "Loan growth",
+      "category": "balance_sheet",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "loan_growth",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Loan growth"
+      ]
+    },
+    {
+      "id": "customer_deposits",
+      "label": "Customer deposits",
+      "category": "funding",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "deposits",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Customer deposits"
+      ]
+    },
+    {
+      "id": "deposit_growth",
+      "label": "Deposit growth",
+      "category": "funding",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "deposit_growth",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Deposit growth"
+      ]
+    },
+    {
+      "id": "loan_to_deposit",
+      "label": "Loans / deposits",
+      "category": "funding",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "loan_to_deposit",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Loans / deposits"
+      ],
+      "formula": "gross_loans / customer_deposits"
+    },
+    {
+      "id": "casa_ratio",
+      "label": "CASA ratio",
+      "category": "funding",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "CASA ratio",
+        "Current and savings accounts ratio"
+      ]
+    },
+    {
+      "id": "tier1_capital_ratio",
+      "label": "Tier 1 capital ratio",
+      "category": "capital_liquidity",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Tier 1 capital ratio",
+        "Common equity Tier 1"
+      ],
+      "interpretation": "Regulatory capital; not the same as accounting equity."
+    },
+    {
+      "id": "total_capital_ratio",
+      "label": "Total capital ratio",
+      "category": "capital_liquidity",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Total capital ratio",
+        "Capital adequacy ratio"
+      ]
+    },
+    {
+      "id": "liquidity_coverage_ratio",
+      "label": "Liquidity coverage ratio",
+      "category": "capital_liquidity",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "LCR",
+        "Liquidity coverage ratio"
+      ]
+    },
+    {
+      "id": "bvps",
+      "label": "Book value per share",
+      "category": "shareholder",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "bvps",
+      "unit": "per_share",
+      "scope": "group_or_company",
+      "aliases": [
+        "Book value per share"
+      ]
+    },
+    {
+      "id": "eps",
+      "label": "Earnings per share",
+      "category": "shareholder",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "eps",
+      "unit": "per_share",
+      "scope": "group_or_company",
+      "aliases": [
+        "Earnings per share"
+      ]
+    },
+    {
+      "id": "digital_customers",
+      "label": "Digital customers / active digital users",
+      "category": "non_financial",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Digital customers / active digital users"
+      ],
+      "interpretation": "Keep the report's definition of 'active'."
+    },
+    {
+      "id": "digital_transactions",
+      "label": "Digital transaction volume",
+      "category": "non_financial",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Digital transaction volume"
+      ]
+    },
+    {
+      "id": "branches",
+      "label": "Branch network",
+      "category": "non_financial",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Branch network"
+      ]
+    },
+    {
+      "id": "employees",
+      "label": "Employees",
+      "category": "non_financial",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Employees"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "income_growth",
+      "title": "Income growth",
+      "metric": "total_operating_income",
+      "type": "growth",
+      "direction": "higher_better",
+      "watch": 0.05,
+      "concern": 0,
+      "points": [
+        "net_interest_income",
+        "net_fee_income",
+        "fee_share"
+      ]
+    },
+    {
+      "id": "efficiency",
+      "title": "Cost efficiency",
+      "metric": "cost_to_income",
+      "type": "level",
+      "direction": "lower_better",
+      "watch": 0.45,
+      "concern": 0.55,
+      "points": [
+        "operating_expenses"
+      ]
+    },
+    {
+      "id": "asset_quality",
+      "title": "Asset quality",
+      "metric": "stage_3_ratio",
+      "type": "level",
+      "direction": "lower_better",
+      "watch": 0.04,
+      "concern": 0.08,
+      "points": [
+        "stage_3_coverage",
+        "impairment_charge",
+        "credit_cost"
+      ],
+      "fallback": "credit_cost",
+      "fallback_watch": 0.015,
+      "fallback_concern": 0.03
+    },
+    {
+      "id": "funding",
+      "title": "Funding and liquidity",
+      "metric": "loan_to_deposit",
+      "type": "level",
+      "direction": "lower_better",
+      "watch": 0.95,
+      "concern": 1.1,
+      "points": [
+        "deposit_growth",
+        "casa_ratio",
+        "liquidity_coverage_ratio"
+      ]
+    },
+    {
+      "id": "capital",
+      "title": "Capital adequacy",
+      "metric": "total_capital_ratio",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.16,
+      "concern": 0.14,
+      "points": [
+        "tier1_capital_ratio"
+      ],
+      "note": "Compare with the regulatory minimum that applies to this bank; thresholds here are judgement calls."
+    },
+    {
+      "id": "returns",
+      "title": "Returns",
+      "metric": "roe",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.12,
+      "concern": 0.08,
+      "points": [
+        "roa",
+        "reported_nim",
+        "nii_to_assets"
+      ]
+    },
+    {
+      "id": "related_party",
+      "title": "Related-party and credit concentration",
+      "type": "manual",
+      "points": [
+        "Read the related-party note and large-exposure disclosures in the risk review."
+      ]
+    }
+  ],
+  "prohibited_generic_metrics": [
+    "current_ratio",
+    "inventory_days",
+    "receivable_days",
+    "conventional_debt_to_equity",
+    "net_debt_to_ebitda",
+    "fcff_dcf"
+  ],
+  "valuation_methods": {
+    "preferred": [
+      "price_to_book",
+      "residual_income",
+      "dividend_discount"
+    ],
+    "conditional": [
+      "earnings_multiple"
+    ],
+    "avoid_as_default": [
+      "dcf_fcff"
+    ]
+  },
+  "cautions": [
+    "Customer deposits are banking funding, not corporate borrowings.",
+    "Keep regulatory capital ratios separate from accounting equity.",
+    "Preserve Bank vs Group values where both are reported."
+  ],
+  "questions": [
+    "What drove the change in net interest margin, and how sensitive is it to rate cuts?",
+    "How have Stage 3 loans and coverage moved by product and sector?",
+    "What is the capital headroom over the regulatory minimum after dividends?"
+  ]
+}

@@ -1,7 +1,8 @@
-import fs from "node:fs";
+import fs from "node:fs";import os from "node:os";import path from "node:path";
+const PAGES=path.join(os.tmpdir(),"cse-pages.json");
 import {extractFigures,scanSignals} from "../src/engine/extract.js";
 import {analyze,dcf} from "../src/engine/analyze.js";
-const pages=JSON.parse(fs.readFileSync("/tmp/pages.json"));
+const pages=JSON.parse(fs.readFileSync(PAGES));
 const e=extractFigures(pages);
 const R=analyze({fields:e.fields,price:{cur:12.6,prev:11.1},signals:scanSignals(pages),company:"Cable Solutions PLC"});
 console.log(R.verdict);

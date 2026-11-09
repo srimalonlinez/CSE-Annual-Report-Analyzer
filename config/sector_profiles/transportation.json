@@ -1,0 +1,134 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "transportation",
+  "display_name": "Transportation",
+  "gics": "Transportation",
+  "reference_report": {
+    "file": "transportation.pdf",
+    "company": "Mercantile Shipping Company PLC",
+    "period": "Annual Report 2025/26"
+  },
+  "business_models": [
+    {
+      "id": "active_transport_operator",
+      "label": "Active shipping / logistics / transport operator",
+      "engine": "industrial"
+    },
+    {
+      "id": "legacy_inactive",
+      "label": "Exited transport operations (investment / rental income)",
+      "engine": "industrial",
+      "warnings": [
+        "The company no longer operates transport assets: shipping KPIs are not applied. Current income comes from other activities."
+      ]
+    }
+  ],
+  "sections_to_inspect": [
+    "chairman_review",
+    "mdna",
+    "directors_report",
+    "going_concern_note",
+    "financial_statements",
+    "five_year_summary"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "nav_per_share"
+    },
+    {
+      "id": "fleet_size",
+      "label": "Fleet / vessel count",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Fleet / vessel count"
+      ],
+      "applies_when": "Active operators only."
+    },
+    {
+      "id": "cargo_volume",
+      "label": "Cargo / tonnage handled",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "unit_volume",
+      "scope": "group_or_company",
+      "aliases": [
+        "Cargo / tonnage handled"
+      ],
+      "applies_when": "Active operators only."
+    },
+    {
+      "id": "rental_income",
+      "label": "Rental income from investment property",
+      "category": "current_activities",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Rental income from investment property"
+      ]
+    },
+    {
+      "id": "investment_income",
+      "label": "Investment / deposit income",
+      "category": "current_activities",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Investment / deposit income"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "going_concern",
+      "title": "Going concern by entity",
+      "type": "manual",
+      "points": [
+        "Check whether going-concern treatment differs between the parent/group and any subsidiary."
+      ]
+    }
+  ],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "nav"
+    ],
+    "conditional": [
+      "ev_ebitda"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Do not apply shipping KPIs just because of the GICS label; confirm current operations."
+  ],
+  "questions": [
+    "What is the plan for the business after exiting transport operations?"
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "food_staples_retailing",
+  "display_name": "Food & Staples Retailing",
+  "gics": "Food & Staples Retailing",
+  "reference_report": {
+    "file": "Food & Staples Retailing.pdf",
+    "company": "Cargills (Ceylon) PLC",
+    "period": "Integrated Annual Report 2025/26"
+  },
+  "business_models": [
+    {
+      "id": "integrated_group",
+      "label": "Integrated retail, manufacturing and distribution group",
+      "engine": "industrial",
+      "diversified": true,
+      "warnings": [
+        "Diversified group: keep segment facts separate from consolidated figures; enter segments in the review step."
+      ]
+    },
+    {
+      "id": "supermarket_retailer",
+      "label": "Supermarket / food retailer",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "leadership_messages",
+    "taking_stock",
+    "segment_note",
+    "slfrs_s1_s2",
+    "financial_statements",
+    "annexures"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "gross_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "interest_cover"
+    },
+    {
+      "ref": "roce"
+    },
+    {
+      "ref": "roe"
+    },
+    {
+      "ref": "inventory_days"
+    },
+    {
+      "ref": "receivable_days"
+    },
+    {
+      "ref": "payable_days"
+    },
+    {
+      "ref": "cash_conversion_cycle"
+    },
+    {
+      "ref": "lease_liabilities"
+    },
+    {
+      "id": "outlets",
+      "label": "Number of outlets",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Number of outlets"
+      ]
+    },
+    {
+      "id": "same_store_sales_growth",
+      "label": "Same-store sales growth",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Same-store sales growth"
+      ],
+      "interpretation": "Only if reported; never estimated."
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "ev_ebitda"
+    ],
+    "conditional": [
+      "sum_of_parts",
+      "earnings_multiple"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Integrated group: do not treat it as only a supermarket retailer.",
+    "Include IFRS 16 lease liabilities when comparing leverage and EBITDA."
+  ],
+  "questions": [
+    "How did retail like-for-like sales perform versus new outlets?",
+    "How much of margin change came from manufacturing versus retail?"
+  ]
+}

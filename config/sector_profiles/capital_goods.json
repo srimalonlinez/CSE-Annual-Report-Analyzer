@@ -1,0 +1,154 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "capital_goods",
+  "display_name": "Capital Goods",
+  "gics": "Capital Goods",
+  "reference_report": {
+    "file": "capital goods.pdf",
+    "company": "Vallibel One PLC",
+    "period": "Annual Report 2025/26"
+  },
+  "business_models": [
+    {
+      "id": "diversified_group",
+      "label": "Diversified holding / conglomerate",
+      "engine": "industrial",
+      "diversified": true,
+      "warnings": [
+        "Diversified group: keep segment facts separate from consolidated figures; enter segments in the review step."
+      ]
+    },
+    {
+      "id": "manufacturer",
+      "label": "Capital-goods manufacturer",
+      "engine": "industrial"
+    },
+    {
+      "id": "engineering_contractor",
+      "label": "Engineering / construction contractor",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "portfolio_at_a_glance",
+    "group_structure",
+    "investment_case",
+    "financial_highlights",
+    "sector_reviews",
+    "segment_note",
+    "risk_management",
+    "financial_statements"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "gross_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "interest_cover"
+    },
+    {
+      "ref": "roce"
+    },
+    {
+      "ref": "roe"
+    },
+    {
+      "ref": "lease_liabilities"
+    },
+    {
+      "id": "segment_count",
+      "label": "Number of reported business sectors",
+      "category": "segments",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Number of reported business sectors"
+      ]
+    },
+    {
+      "id": "goodwill",
+      "label": "Goodwill",
+      "category": "balance_sheet",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Goodwill"
+      ]
+    },
+    {
+      "id": "impairment_of_investments",
+      "label": "Impairment of goodwill / investments",
+      "category": "balance_sheet",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Impairment of goodwill / investments"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "segment_comparability",
+      "title": "Segment comparability",
+      "type": "manual",
+      "points": [
+        "Check whether sector groupings changed this year; restated comparatives make year-on-year comparisons unreliable."
+      ]
+    }
+  ],
+  "valuation_methods": {
+    "preferred": [
+      "sum_of_parts"
+    ],
+    "conditional": [
+      "dcf_fcff",
+      "ev_ebitda",
+      "earnings_multiple",
+      "price_to_book"
+    ],
+    "avoid_as_default": [
+      "single_consolidated_multiple"
+    ]
+  },
+  "cautions": [
+    "The reference report is a diversified conglomerate, not a pure capital-goods manufacturer.",
+    "Changes in sector grouping make year-on-year comparisons non-comparable."
+  ],
+  "questions": [
+    "Which sectors drove the change in group profit, and which are loss-making?",
+    "How is capital allocated between sectors, and what return does each earn?"
+  ]
+}

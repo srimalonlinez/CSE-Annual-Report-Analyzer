@@ -1,0 +1,155 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "real_estate",
+  "display_name": "Real Estate Management & Development",
+  "gics": "Real Estate Management & Development",
+  "reference_report": {
+    "file": "Real Estate Management&Development.pdf",
+    "company": "Commercial Development Company PLC",
+    "period": "Annual Report"
+  },
+  "business_models": [
+    {
+      "id": "property_investment_leasing",
+      "label": "Property investment and leasing",
+      "engine": "industrial",
+      "nav": true
+    },
+    {
+      "id": "developer",
+      "label": "Property developer",
+      "engine": "industrial",
+      "nav": true
+    },
+    {
+      "id": "facilities_services",
+      "label": "Property management / facilities services",
+      "engine": "industrial"
+    },
+    {
+      "id": "mixed_property",
+      "label": "Mixed property business",
+      "engine": "industrial",
+      "nav": true
+    }
+  ],
+  "sections_to_inspect": [
+    "financial_statements",
+    "investment_property_note",
+    "valuation_note",
+    "supplementary_information",
+    "decade_at_a_glance",
+    "related_party_note"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "nav_per_share"
+    },
+    {
+      "id": "investment_property",
+      "label": "Investment property (carrying value)",
+      "category": "property",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Investment property (carrying value)"
+      ]
+    },
+    {
+      "id": "fair_value_gain",
+      "label": "Fair-value gain on investment property",
+      "category": "property",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Fair-value gain on investment property"
+      ],
+      "interpretation": "Not recurring cash income."
+    },
+    {
+      "id": "rental_income",
+      "label": "Rental income",
+      "category": "property",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Rental income"
+      ]
+    },
+    {
+      "id": "lettable_area",
+      "label": "Lettable area",
+      "category": "property",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "area",
+      "scope": "group_or_company",
+      "aliases": [
+        "Lettable area"
+      ]
+    },
+    {
+      "id": "occupancy_rate",
+      "label": "Occupancy",
+      "category": "property",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Occupancy"
+      ]
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "nav"
+    ],
+    "conditional": [
+      "adjusted_nav",
+      "dcf_fcff",
+      "price_to_book"
+    ],
+    "avoid_as_default": [
+      "dcf_fcff_without_property_data"
+    ]
+  },
+  "cautions": [
+    "Separate fair-value gains from recurring rental cash flow.",
+    "Do not calculate rental yield or cap rate without compatible property and income data."
+  ],
+  "questions": [
+    "What valuation method and assumptions underpin investment-property values?",
+    "How much of profit is fair-value gains versus rent?"
+  ]
+}

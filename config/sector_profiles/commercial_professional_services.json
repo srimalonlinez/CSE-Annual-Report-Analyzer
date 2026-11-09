@@ -1,0 +1,147 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "commercial_professional_services",
+  "display_name": "Commercial & Professional Services",
+  "gics": "Commercial & Professional Services",
+  "reference_report": {
+    "file": "commercial & professional service.pdf",
+    "company": "Printcare PLC",
+    "period": "Annual Report 2025/26"
+  },
+  "business_models": [
+    {
+      "id": "printing_packaging",
+      "label": "Printing and packaging manufacturer",
+      "engine": "industrial"
+    },
+    {
+      "id": "business_services",
+      "label": "Business / professional services",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "financial_highlights",
+    "chairman_statement",
+    "mdna",
+    "segment_review",
+    "risk_management",
+    "decade_at_a_glance",
+    "investor_information"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "gross_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "interest_cover"
+    },
+    {
+      "ref": "roce"
+    },
+    {
+      "ref": "roe"
+    },
+    {
+      "ref": "inventory_days"
+    },
+    {
+      "ref": "receivable_days"
+    },
+    {
+      "ref": "payable_days"
+    },
+    {
+      "ref": "cash_conversion_cycle"
+    },
+    {
+      "ref": "payout_ratio"
+    },
+    {
+      "ref": "nav_per_share"
+    },
+    {
+      "id": "export_share",
+      "label": "Export / overseas revenue share",
+      "category": "segments",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Export / overseas revenue share"
+      ]
+    },
+    {
+      "id": "gearing_reported",
+      "label": "Gearing (reported)",
+      "category": "financial_position",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Gearing"
+      ]
+    },
+    {
+      "id": "roasf_reported",
+      "label": "Return on average shareholders' funds (reported)",
+      "category": "profitability",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Return on average shareholders' funds (reported)"
+      ]
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "ev_ebitda"
+    ],
+    "conditional": [
+      "earnings_multiple",
+      "price_to_book"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Do not assume a service-classified company is asset-light.",
+    "Separate start-up / ramp-up losses of overseas units from recurring performance."
+  ],
+  "questions": [
+    "How much of revenue is export or overseas, and how exposed is it to tariffs?",
+    "When do overseas operations reach break-even?"
+  ]
+}

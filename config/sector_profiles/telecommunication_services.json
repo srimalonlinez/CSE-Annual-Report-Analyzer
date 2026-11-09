@@ -1,0 +1,149 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "telecommunication_services",
+  "display_name": "Telecommunication Services",
+  "gics": "Telecommunication Services",
+  "reference_report": {
+    "file": "Telecommunication Services.pdf",
+    "company": "Dialog Axiata PLC",
+    "period": "Annual Report"
+  },
+  "business_models": [
+    {
+      "id": "integrated_operator",
+      "label": "Integrated operator (mobile, fixed, broadband, enterprise)",
+      "engine": "industrial"
+    },
+    {
+      "id": "mobile_operator",
+      "label": "Mobile operator",
+      "engine": "industrial"
+    },
+    {
+      "id": "fixed_broadband",
+      "label": "Fixed / broadband operator",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "financial_highlights",
+    "non_financial_highlights",
+    "ceo_review",
+    "mdna",
+    "business_review",
+    "manufactured_capital",
+    "five_year_summary"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "lease_liabilities"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "id": "subscribers",
+      "label": "Subscribers / connections",
+      "category": "operations",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Subscribers / connections"
+      ],
+      "interpretation": "State whether active subscribers, SIMs or unique customers."
+    },
+    {
+      "id": "arpu",
+      "label": "ARPU",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency",
+      "scope": "group_or_company",
+      "aliases": [
+        "ARPU"
+      ],
+      "interpretation": "Do not compare ARPU with different subscriber definitions or periods."
+    },
+    {
+      "id": "churn",
+      "label": "Churn",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Churn"
+      ]
+    },
+    {
+      "id": "data_traffic",
+      "label": "Data traffic",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "unit_volume",
+      "scope": "group_or_company",
+      "aliases": [
+        "Data traffic"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "capex_intensity",
+      "title": "Capex intensity",
+      "metric": "capex_to_revenue",
+      "type": "level",
+      "direction": "lower_better",
+      "watch": 0.25,
+      "concern": 0.35,
+      "points": [
+        "ebitda_margin"
+      ]
+    }
+  ],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "ev_ebitda"
+    ],
+    "conditional": [
+      "earnings_multiple"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Distinguish active subscribers, SIM connections, broadband accounts and unique customers.",
+    "Treat leases consistently in leverage and EBITDA comparisons."
+  ],
+  "questions": [
+    "What share of capex is network expansion versus maintenance?",
+    "How did ARPU and data usage move by segment?"
+  ]
+}

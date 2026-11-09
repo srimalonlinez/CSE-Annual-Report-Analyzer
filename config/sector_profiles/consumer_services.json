@@ -1,0 +1,180 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "consumer_services",
+  "display_name": "Consumer Services",
+  "gics": "Consumer Services",
+  "reference_report": {
+    "file": "Consumer Services.pdf",
+    "company": "Sigiriya Village Hotels PLC",
+    "period": "Annual Report"
+  },
+  "business_models": [
+    {
+      "id": "hotel_owner_operator",
+      "label": "Hotel owner / operator",
+      "engine": "industrial"
+    },
+    {
+      "id": "hotel_management",
+      "label": "Hotel management (asset-light)",
+      "engine": "industrial"
+    },
+    {
+      "id": "other_consumer_services",
+      "label": "Other consumer services (education, leisure, etc.)",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "chairman_review",
+    "operational_review",
+    "financial_highlights",
+    "risk_management",
+    "financial_statements"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "lease_liabilities"
+    },
+    {
+      "id": "rooms",
+      "label": "Room inventory",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Room inventory"
+      ]
+    },
+    {
+      "id": "occupancy_rate",
+      "label": "Occupancy rate",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Occupancy rate"
+      ],
+      "interpretation": "Never inferred from revenue."
+    },
+    {
+      "id": "adr",
+      "label": "Average daily rate (ADR)",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency",
+      "scope": "group_or_company",
+      "aliases": [
+        "Average daily rate (ADR)"
+      ]
+    },
+    {
+      "id": "revpar",
+      "label": "RevPAR",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "revpar",
+      "inputs": [
+        "occupancy_rate",
+        "adr"
+      ],
+      "unit": "currency",
+      "scope": "group_or_company",
+      "aliases": [
+        "RevPAR"
+      ],
+      "formula": "occupancy_rate x ADR, only when both are reported for the same period"
+    },
+    {
+      "id": "guest_nights",
+      "label": "Guest nights",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Guest nights"
+      ]
+    },
+    {
+      "id": "fb_revenue",
+      "label": "Food and beverage revenue",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Food and beverage revenue"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "occupancy",
+      "title": "Occupancy",
+      "metric": "occupancy_rate",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.6,
+      "concern": 0.45,
+      "points": [
+        "adr",
+        "revpar"
+      ],
+      "note": "Only assessed when occupancy is reported; account for seasonality."
+    }
+  ],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "ev_ebitda"
+    ],
+    "conditional": [
+      "nav",
+      "earnings_multiple"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Do not infer occupancy, ADR or RevPAR from revenue.",
+    "Distinguish hotel operating economics from owned-property value."
+  ],
+  "questions": [
+    "What were occupancy and ADR by season, and how do they compare with pre-crisis levels?",
+    "What refurbishment capex is planned?"
+  ]
+}
