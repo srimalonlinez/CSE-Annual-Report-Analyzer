@@ -8,5 +8,5 @@ export default async (req)=>{
   const r=j.report;
   if(j.paid) return Response.json({state:"done",paid:true,report:r});
   const {company,period,unit,verdict,metrics,checks=[]}=r;
-  return Response.json({state:"done",paid:false,report:{company,period,unit,verdict,metrics,checks:checks.slice(0,2)}});
+  return Response.json({state:"done",paid:false,report:{company,period,unit,verdict,metrics,checks:checks.slice(0,2),charts:{status:r.charts?.status,margins:r.charts?.margins}}});
 };

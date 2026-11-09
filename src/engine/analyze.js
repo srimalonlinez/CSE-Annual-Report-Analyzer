@@ -23,8 +23,8 @@ export function metrics(f,i,price,shares){
 }
 export function altman(m){
   const w=m.ca-m.cl;
-  if(ok(m.mc))return{z:1.2*w/m.ta+1.4*m.re/m.ta+3.3*m.ebit/m.ta+0.6*m.mc/m.tl+m.rev/m.ta,kind:"original (market value of equity)"};
-  return{z:6.56*w/m.ta+3.26*m.re/m.ta+6.72*m.ebit/m.ta+1.05*m.eq/m.tl,kind:"Z'' (book equity, no share price given)"};
+  if(ok(m.mc))return{z:1.2*w/m.ta+1.4*m.re/m.ta+3.3*m.ebit/m.ta+0.6*m.mc/m.tl+m.rev/m.ta,kind:"original (market value of equity)",lo:1.81,hi:2.99};
+  return{z:6.56*w/m.ta+3.26*m.re/m.ta+6.72*m.ebit/m.ta+1.05*m.eq/m.tl,kind:"Z'' (book equity, no share price given)",lo:1.1,hi:2.6};
 }
 export function piotroski(c,p){
   const t=[["ROA positive",c.roa>0],["Operating cash flow positive",c.cfo>0],["ROA improving",c.roa>p.roa],["Cash flow above net profit",c.cfo>c.pat],
@@ -94,7 +94,7 @@ export function analyze({fields:f,price,shares,signals={},company="",period="",u
   (dg>=-.01?pos:con).push(`Gross margin ${pc(p.gm)} to ${pc(c.gm)}`);
   (c.conv>=.8?pos:con).push(`Cash conversion ${xx(c.conv)} of PAT`);
   (lev<1&&c.cov>6?pos:con).push(`Net debt ${xx(lev)} EBITDA, interest cover ${xx(c.cov)}`);
-  (alt.z>(ok(c.mc)?2.99:5.85)?pos:con).push(`Altman Z ${n(alt.z)}`);
+  (alt.z>alt.hi?pos:con).push(`Altman Z ${n(alt.z)}`);
   (pio.score>=7?pos:con).push(`Piotroski ${pio.score} of 9`);
   (rgap<=.1?pos:con).push(`Receivables growth ${pc(c.rec/p.rec-1)} vs revenue ${pc(rg)}`);
   if(ok(c.fcf)&&ok(c.div)&&c.fcf<c.div)con.push("Free cash flow below dividends paid");
@@ -115,6 +115,16 @@ export function analyze({fields:f,price,shares,signals={},company="",period="",u
   const taxRate=Math.min(Math.max(ok(c.etr)?c.etr:.17,0),.35);
   const dcfInputs={rev:c.rev,tax:taxRate,da:c.da/c.rev,capex:z0(c.capex)/c.rev,nd:c.nd,shares:c.shares,price:c.px};
   const base={g:Math.min(Math.max(ok(rg)?rg:.05,.02),.12),m:ok(c.om)?+c.om.toFixed(3):.12,w:.14,tg:.03};
-  return{company,period,unit,verdict,metrics:metricsOut,checks,qoe:{rows:qoe,piotroski:pio,altman:{z:alt.z,kind:alt.kind}},bridge:bg,
+  const q1=x=>ok(x)?+x:null,pairs=a=>a.map(([label,cur,prev])=>({label,cur:q1(cur),prev:q1(prev)}));
+  const charts={
+    status:{healthy:cnt("healthy"),watch:cnt("watch"),concern:cnt("concern"),manual:cnt("unknown")},
+    margins:pairs([["Gross",c.gm,p.gm],["EBITDA",c.em,p.em],["Operating",c.om,p.om],["Net",c.nm,p.nm]]),
+    cash:pairs([["Profit after tax",c.pat,p.pat],["Operating cash flow",c.cfo,p.cfo],["Free cash flow",c.fcf,p.fcf]]),
+    days:pairs([["Receivable days",c.dso,p.dso],["Inventory days",c.dio,p.dio],["Payable days",c.dpo,p.dpo],["Cash cycle",c.ccc,p.ccc]]),
+    returns:pairs([["ROE",c.roe,p.roe],["ROCE",c.roce,p.roce],["ROA",c.roa,p.roa]]),
+    caMix:{inv:q1(c.inv),rec:q1(c.rec),cash:q1(c.cash),other:q1(Math.max(c.ca-z0(c.inv)-z0(c.rec)-z0(c.cash),0))},
+    altman:{z:q1(alt.z),lo:alt.lo,hi:alt.hi,kind:alt.kind},
+    patStart:q1(p.pat),patEnd:q1(c.pat)};
+  return{company,period,unit,verdict,charts,metrics:metricsOut,checks,qoe:{rows:qoe,piotroski:pio,altman:{z:alt.z,kind:alt.kind}},bridge:bg,
     dcf:{inputs:dcfInputs,base},positives:pos,concerns:con,questions:Q};
 }

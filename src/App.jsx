@@ -3,6 +3,7 @@ import {readPages} from "./pdf.js";
 import {extractFigures,scanSignals} from "./engine/extract.js";
 import {dcf} from "./engine/analyze.js";
 import tickers from "./tickers.json";
+import {GroupedBars,Donut,Waterfall,Piotroski,ZBand,RefBars,nf,pctF} from "./Charts.jsx";
 import "./styles.css";
 
 const EIGHT=[["Revenue trajectory","CAGR, segment mix, year-on-year growth."],["Margin direction","Gross, operating and net margin trajectory."],["Cash flow quality","Op CF / PAT: is profit turning into cash?"],["Debt structure","D/E, maturity, interest cover, change in borrowings."],["Working capital health","Inventory, receivable and payable days; customer advances."],["Related-party flows","Parent, sister and associate transactions."],["Returns & valuation","ROE and ROCE trajectory against history."],["Disclosure quality","Contingent liabilities, going concern, audit flags."]];
@@ -46,48 +47,64 @@ const f2=x=>x==null||!Number.isFinite(x)?"n/a":x.toLocaleString("en",{maximumFra
 function Dcf({d}){
   const [a,setA]=useState(d.base);const set=k=>e=>setA({...a,[k]:parseFloat(e.target.value)});
   const inp={...d.inputs,shares:d.inputs.shares??NaN,nd:d.inputs.nd??0};
-  const v=(x)=>{const r=dcf(inp,x);return Number.isFinite(r.perShare)?r.perShare:r.equity};
-  const unit=Number.isFinite(inp.shares)?"per share":"equity value (add a share price/EPS for per-share)";
-  const pr=d.inputs.price;
+  const perShare=Number.isFinite(inp.shares),pr=d.inputs.price;
+  const v=x=>{const r=dcf(inp,x);return perShare?r.perShare:r.equity};
   const W=[a.w-.02,a.w,a.w+.02],T=[a.tg-.01,a.tg,a.tg+.01];
   const S=[["Bear",{g:a.g-.03,m:a.m-.02}],["Base",{g:a.g,m:a.m}],["Bull",{g:a.g+.03,m:a.m+.025}]];
-  return(<div className="panel"><h3>Valuation scenarios and sensitivity</h3>
+  const cls=x=>Number.isFinite(pr)&&perShare?(x>=pr?"g":"r"):"n";
+  return(<div className="panel"><h3>Valuation scenarios</h3>
     <div className="sl">{[["g","Revenue growth",-.05,.2,.005],["m","Operating margin",.03,.35,.005],["w","WACC",.07,.25,.005],["tg","Terminal growth",0,.06,.005]].map(([k,l,mn,mx,st])=>
-      <label key={k}>{l} {(a[k]*100).toFixed(1)}%<input type="range" min={mn} max={mx} step={st} value={a[k]} onChange={set(k)}/></label>)}</div>
-    <p>DCF {unit}: <b>{f2(v(a))}</b>{Number.isFinite(pr)&&Number.isFinite(inp.shares)&&<> vs price {f2(pr)} ({((v(a)/pr-1)*100).toFixed(0)}%)</>}</p>
-    <div className="wrap"><table><thead><tr><th>WACC \ terminal g</th>{T.map(t=><th key={t}>{(t*100).toFixed(1)}%</th>)}</tr></thead>
-      <tbody>{W.map(w=><tr key={w}><td>{(w*100).toFixed(1)}%</td>{T.map(t=><td key={t}>{f2(v({...a,w,tg:t}))}</td>)}</tr>)}</tbody></table></div>
-    <h3>Scenarios by WACC</h3><div className="wrap"><table><thead><tr><th>Scenario</th>{W.map(w=><th key={w}>{(w*100).toFixed(1)}%</th>)}</tr></thead>
-      <tbody>{S.map(([n,x])=><tr key={n}><td>{n} ({(x.g*100).toFixed(0)}% growth, {(x.m*100).toFixed(1)}% margin)</td>{W.map(w=><td key={w}>{f2(v({...a,...x,w}))}</td>)}</tr>)}</tbody></table></div>
-    <p className="mut">Five-year forecast; tax at the reported rate; working capital 45% of incremental revenue; capex and depreciation held at this year’s share of revenue. Illustrative only.</p></div>);
+      <label key={k} className="sld"><span><b>{l}</b><output>{(a[k]*100).toFixed(1)}%</output></span>
+        <input type="range" min={mn} max={mx} step={st} value={a[k]} onChange={set(k)} aria-label={l}/>
+        <small>{(mn*100).toFixed(0)}% to {(mx*100).toFixed(0)}%</small></label>)}
+      <button className="rs" onClick={()=>setA(d.base)}>Reset to report values</button></div>
+    <div className="cg">
+      <RefBars title={`Scenario value ${perShare?"per share":"(equity value)"} at ${(a.w*100).toFixed(0)}% WACC`} sub={perShare&&Number.isFinite(pr)?"Dashed line = share price you entered":"Enter a share price for the comparison"}
+        data={S.map(([n,x])=>({label:n,value:v({...a,...x}),accent:n==="Base"}))} refLine={perShare&&Number.isFinite(pr)?{value:pr,label:`Price ${nf(pr,2)}`}:null}/>
+      <figure className="chart"><figcaption><b>Sensitivity: WACC against terminal growth</b><span>{perShare&&Number.isFinite(pr)?"Green = above the share price, red = below":"Base-case value in each cell"}</span></figcaption>
+        <div className="heat" style={{gridTemplateColumns:"1.2fr repeat(3,1fr)"}}>
+          <div className="h">WACC \ g</div>{T.map(t=><div className="h" key={t}>{(t*100).toFixed(1)}%</div>)}
+          {W.flatMap(w=>[<div className="h" key={"w"+w}>{(w*100).toFixed(1)}%</div>,...T.map(t=>{const x=v({...a,w,tg:t});return <div key={w+"-"+t} className={cls(x)}>{nf(x,2)}</div>})])}
+        </div></figure></div>
+    <p className="mut">Five-year forecast; tax at the reported rate; working capital 45% of incremental revenue; capex and depreciation at this year’s share of revenue. Illustrative only.</p></div>);
 }
 
+const Tile=({m})=>{const bad=m.label==="Net debt"?!m.chg.startsWith("-"):m.chg.startsWith("-");
+  return <div className="tile"><small>{m.label}</small><strong>{m.cur}</strong><span className={m.chg==="n/a"?"":bad?"dnc":"up"}>{m.chg==="n/a"?"":(m.chg.startsWith("-")?"▼ ":"▲ ")+m.chg.replace("-","")}</span><span className="mut"> was {m.prev}</span></div>};
+
 function Report({r,paid,onUnlock,email,setEmail,busy}){
-  const br=r.bridge||[],mx=Math.max(1,...br.map(b=>Math.abs(+b.delta||0)));
+  const ch=r.charts||{},S=ch.status||{};
+  const glance=<div className="cg">
+    <Donut title="Eight checks at a glance" sub={`${S.healthy??0} of 8 look healthy`} center={{big:`${S.healthy??0}/8`,small:"healthy"}} parts={[
+      {label:"Healthy",value:S.healthy,color:"var(--g)"},{label:"Watch",value:S.watch,color:"var(--a)"},{label:"Concern",value:S.concern,color:"var(--r)"},{label:"Manual review",value:S.manual,color:"var(--chart-prev)"}]}/>
+    <GroupedBars title="Margins: how much of each rupee stays as profit" data={ch.margins} fmt={pctF}/></div>;
+  const mix=ch.caMix||{};
   const full=paid&&<>
+    <div className="cg">
+      <GroupedBars title="Profit versus cash" sub="Profit that does not turn into cash is a warning sign" data={ch.cash} fmt={v=>nf(v,0)}/>
+      <GroupedBars title="Working capital in days" sub="Longer receivable and inventory days tie up cash" data={ch.days} fmt={v=>nf(v,0)}/>
+      <GroupedBars title="Returns" data={ch.returns} fmt={pctF}/>
+      <Donut title="What current assets are made of" sub="This year" parts={[
+        {label:"Receivables",value:mix.rec,color:"var(--acc)",text:nf(mix.rec,0)},{label:"Inventories",value:mix.inv,color:"var(--a)",text:nf(mix.inv,0)},
+        {label:"Cash",value:mix.cash,color:"var(--g)",text:nf(mix.cash,0)},{label:"Other",value:mix.other,color:"var(--chart-prev)",text:nf(mix.other,0)}]}/>
+    </div>
+    <Waterfall title="PAT bridge: what changed and why" sub="Change in profit after tax, by driver" start={ch.patStart} end={ch.patEnd} steps={r.bridge}/>
+    <div className="cg" style={{marginTop:14}}><Piotroski score={r.qoe.piotroski.score} tests={r.qoe.piotroski.tests}/><ZBand a={ch.altman}/></div>
+    <div className="tiles">{r.qoe.rows.slice(0,7).map((x,i)=><div className="tile" key={i}><small>{x[0]}</small><strong>{x[1]}</strong><span className="mut">was {x[2]}</span></div>)}</div>
     {(r.checks||[]).slice(2).map((c,i)=><Check key={i} c={c} i={i+2}/>)}
-    <div className="panel"><h3>Quality of earnings</h3><div className="wrap"><table><thead><tr><th>Ratio</th><th>This year</th><th>Last year</th></tr></thead>
-      <tbody>{r.qoe.rows.map((x,i)=><tr key={i}><td>{x[0]}</td><td>{x[1]}</td><td>{x[2]}</td></tr>)}</tbody></table></div>
-      <h3>Piotroski F-score: {r.qoe.piotroski.score} of 9</h3><div className="wrap"><table><tbody>{r.qoe.piotroski.tests.map((t,i)=><tr key={i}><td>{t.name}</td><td><span className={"pill "+(t.pass?"healthy":"concern")}>{t.pass?"Pass":"Fail"}</span></td></tr>)}</tbody></table></div>
-      <p className="mut">Altman above 2.99 (market-value form) or 5.85 (Z″) is the safe zone. Scored on year-end balances.</p></div>
-    <div className="panel"><h3>PAT bridge: what changed and why</h3>{br.map((b,i)=>{const d=+b.delta||0,w=Math.abs(d)/mx*50;
-      return <div key={i} style={{display:"grid",gridTemplateColumns:"minmax(110px,190px) 1fr 70px",gap:8,alignItems:"center",margin:"4px 0"}}>
-        <span>{b.driver}</span><div className="bar"><i style={{[d>=0?"left":"right"]:"50%",width:w+"%",background:`var(--${d>=0?"g":"r"})`}}/></div>
-        <span>{d>=0?"+":""}{d.toLocaleString()}</span></div>})}</div>
     {r.dcf&&<Dcf d={r.dcf}/>}
     <div className="panel"><List t="Positive observations" a={r.positives}/><List t="Areas of concern" a={r.concerns}/></div>
     <div className="panel"><h3>Questions to ask the company</h3><ol>{(r.questions||[]).map((x,i)=><li key={i}>{x}</li>)}</ol></div>
     <div className="panel"><p className="mut">Every figure is extracted by rules from the PDF and every ratio is calculated by formula; nothing is generated by AI. Related-party and disclosure checks only flag where to read. Check numbers against the report. Not investment advice.</p></div>
     <button onClick={()=>window.print()}>Print / save as PDF</button></>;
   return(<div id="res">
-    <div className="panel"><h3>{r.company||"Report"} {r.period&&"· "+r.period}</h3><p>{r.verdict}</p><div className="wrap"><table>
-      <thead><tr><th>Metric</th><th>Current</th><th>Prior</th><th>Change</th></tr></thead>
-      <tbody>{(r.metrics||[]).map((m,i)=><tr key={i}><td>{m.label}</td><td>{m.cur}</td><td>{m.prev}</td><td>{m.chg}</td></tr>)}</tbody></table></div></div>
+    <div className="panel"><h3>{r.company||"Report"} {r.period&&"· "+r.period}</h3><p>{r.verdict}</p>
+      <div className="tiles">{(r.metrics||[]).map((m,i)=><Tile key={i} m={m}/>)}</div></div>
+    {glance}
     {(r.checks||[]).slice(0,2).map((c,i)=><Check key={i} c={c} i={i}/>)}
-    {paid?full:<div className="lock"><div className="blur"><div className="panel"><h3>3. Cash flow quality</h3><ul><li>locked locked locked locked</li><li>locked locked locked</li></ul></div>
-      <div className="panel"><h3>Quality of earnings</h3><ul><li>locked locked locked locked</li></ul></div></div>
+    {paid?full:<div className="lock"><div className="blur"><div className="cg"><div className="chart" style={{height:230}}/><div className="chart" style={{height:230}}/></div></div>
       <div className="gate"><b style={{fontSize:18}}>Unlock the full report</b>
-        <span className="mut">6 more checks, earnings quality, Piotroski and Altman, PAT bridge, DCF scenarios and investor questions.</span>
+        <span className="mut">6 more checks, cash and working-capital charts, PAT bridge, Piotroski and Altman, DCF scenarios and investor questions.</span>
         <input type="text" placeholder="Email for the payment receipt" value={email} onChange={e=>setEmail(e.target.value)} style={{maxWidth:320}}/>
         <button className="p" disabled={busy} onClick={onUnlock}>Pay LKR 99 and unlock</button></div></div>}
   </div>);
