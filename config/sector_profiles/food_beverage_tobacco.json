@@ -1,0 +1,151 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "food_beverage_tobacco",
+  "display_name": "Food, Beverage & Tobacco",
+  "gics": "Food, Beverage & Tobacco",
+  "reference_report": {
+    "file": "Food, Beverage & Tobacco.pdf",
+    "company": "Mahaweli Coconut Plantations PLC",
+    "period": "Annual Report 2025/26"
+  },
+  "business_models": [
+    {
+      "id": "plantation",
+      "label": "Plantation company",
+      "engine": "industrial",
+      "warnings": [
+        "Separate biological-asset fair-value movements from recurring operating results."
+      ]
+    },
+    {
+      "id": "food_beverage_manufacturer",
+      "label": "Food / beverage manufacturer",
+      "engine": "industrial"
+    },
+    {
+      "id": "tobacco",
+      "label": "Tobacco",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "plantation_sector_highlights",
+    "field_wise_crop_performance",
+    "ten_year_crop_performance",
+    "pest_disease_monitoring",
+    "mdna",
+    "risk_management",
+    "financial_statements"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "gross_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "roe"
+    },
+    {
+      "id": "crop_volume",
+      "label": "Crop / production volume",
+      "category": "operations",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "unit_volume",
+      "scope": "group_or_company",
+      "aliases": [
+        "Crop",
+        "Production"
+      ]
+    },
+    {
+      "id": "yield_per_hectare",
+      "label": "Yield per hectare",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "unit_volume",
+      "scope": "group_or_company",
+      "aliases": [
+        "Yield per hectare"
+      ]
+    },
+    {
+      "id": "cost_per_unit",
+      "label": "Cost of production per unit",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency",
+      "scope": "group_or_company",
+      "aliases": [
+        "Cost of production per unit"
+      ]
+    },
+    {
+      "id": "average_selling_price",
+      "label": "Average selling price",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency",
+      "scope": "group_or_company",
+      "aliases": [
+        "Average selling price"
+      ]
+    },
+    {
+      "id": "biological_asset_fv_change",
+      "label": "Biological asset fair-value change",
+      "category": "accounting",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Biological asset fair-value change"
+      ]
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "nav"
+    ],
+    "conditional": [
+      "earnings_multiple"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Plantation company, not a packaged-food manufacturer.",
+    "Preserve crop, field and estate dimensions where reported."
+  ],
+  "questions": [
+    "How much of profit came from biological-asset revaluation versus crop sales?",
+    "What replanting is planned, and what does it cost?"
+  ]
+}

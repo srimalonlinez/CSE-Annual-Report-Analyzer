@@ -1,0 +1,133 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "automobile_components",
+  "display_name": "Automobile & Components",
+  "gics": "Automobile & Components",
+  "reference_report": {
+    "file": "automobile & components.pdf",
+    "company": "Kelani Tyres PLC",
+    "period": "Annual Report 2025/26"
+  },
+  "business_models": [
+    {
+      "id": "holding_with_jv",
+      "label": "Holding / trading company with manufacturing joint venture",
+      "engine": "industrial",
+      "warnings": [
+        "Manufacturing sits largely in a joint venture: do not attribute JV revenue or assets to the parent without equity-accounting treatment."
+      ]
+    },
+    {
+      "id": "manufacturer",
+      "label": "Component manufacturer",
+      "engine": "industrial"
+    },
+    {
+      "id": "importer_trader",
+      "label": "Importer / trader",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "chairman_review",
+    "performance_highlights",
+    "consolidation_analysis",
+    "jv_performance_highlights",
+    "financial_statements",
+    "investor_information"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "gross_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "interest_cover"
+    },
+    {
+      "ref": "roce"
+    },
+    {
+      "ref": "roe"
+    },
+    {
+      "ref": "inventory_days"
+    },
+    {
+      "ref": "receivable_days"
+    },
+    {
+      "ref": "payable_days"
+    },
+    {
+      "ref": "cash_conversion_cycle"
+    },
+    {
+      "id": "jv_share_of_profit",
+      "label": "Share of profit of joint venture",
+      "category": "group_structure",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Share of profit of joint venture"
+      ]
+    },
+    {
+      "id": "rental_income",
+      "label": "Rental income",
+      "category": "group_structure",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Rental income"
+      ]
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "sum_of_parts"
+    ],
+    "conditional": [
+      "earnings_multiple",
+      "price_to_book"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Preserve JV performance separately from the parent's own operations."
+  ],
+  "questions": [
+    "How much of group profit is the share of JV profit, and what drives it?"
+  ]
+}

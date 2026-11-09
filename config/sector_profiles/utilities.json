@@ -1,0 +1,156 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "utilities",
+  "display_name": "Utilities",
+  "gics": "Utilities",
+  "reference_report": {
+    "file": "Utilities.pdf",
+    "company": "Vidullanka PLC",
+    "period": "Annual Report"
+  },
+  "business_models": [
+    {
+      "id": "ipp_renewable",
+      "label": "Independent power producer (renewable)",
+      "engine": "industrial"
+    },
+    {
+      "id": "regulated_network",
+      "label": "Regulated network utility",
+      "engine": "industrial"
+    },
+    {
+      "id": "water_other",
+      "label": "Water / other utility",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "key_performance_highlights",
+    "operational_highlights",
+    "project_portfolio",
+    "ceo_review",
+    "mdna",
+    "slfrs_s1_s2",
+    "financial_statements",
+    "ten_year_summary"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "interest_cover"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "id": "installed_capacity_mw",
+      "label": "Installed capacity",
+      "category": "operations",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "MW",
+      "scope": "group_or_company",
+      "aliases": [
+        "Installed capacity"
+      ]
+    },
+    {
+      "id": "generation_gwh",
+      "label": "Electricity generated",
+      "category": "operations",
+      "status": "report_observed",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "GWh",
+      "scope": "group_or_company",
+      "aliases": [
+        "Electricity generated"
+      ]
+    },
+    {
+      "id": "plant_availability",
+      "label": "Plant availability",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Plant availability"
+      ]
+    },
+    {
+      "id": "capacity_factor",
+      "label": "Capacity factor",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "capacity_factor",
+      "inputs": [
+        "generation_gwh",
+        "installed_capacity_mw"
+      ],
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Capacity factor"
+      ],
+      "formula": "generation_gwh x 1,000 / (installed_capacity_mw x 8,760)",
+      "applies_when": "Only when generation and installed capacity cover the same full year."
+    }
+  ],
+  "checks": [
+    {
+      "id": "capacity_factor",
+      "title": "Capacity factor",
+      "metric": "capacity_factor",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.35,
+      "concern": 0.2,
+      "points": [
+        "generation_gwh",
+        "installed_capacity_mw"
+      ],
+      "note": "Hydro and solar capacity factors differ widely; thresholds are generic."
+    }
+  ],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff"
+    ],
+    "conditional": [
+      "ev_ebitda",
+      "sum_of_parts"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Distinguish independent power producers from regulated network utilities.",
+    "Do not assume a tariff model the company does not have."
+  ],
+  "questions": [
+    "How much generation depends on rainfall or irradiance, and how variable was it?",
+    "When do power purchase agreements expire?"
+  ]
+}

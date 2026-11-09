@@ -1,0 +1,140 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "retailing",
+  "display_name": "Retailing",
+  "gics": "Retailing",
+  "reference_report": {
+    "file": "Retailing.pdf",
+    "company": "Diesel & Motor Engineering PLC (DIMO) - confirm from the PDF cover",
+    "period": "Annual Report"
+  },
+  "business_models": [
+    {
+      "id": "diversified_distributor",
+      "label": "Diversified distribution and retail group",
+      "engine": "industrial",
+      "diversified": true,
+      "warnings": [
+        "Diversified group: keep segment facts separate from consolidated figures; enter segments in the review step."
+      ]
+    },
+    {
+      "id": "automobile_dealer",
+      "label": "Automobile dealer / distributor",
+      "engine": "industrial"
+    },
+    {
+      "id": "single_format_retailer",
+      "label": "Single-format retailer",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "group_structure",
+    "year_at_a_glance",
+    "business_reports",
+    "capital_reports",
+    "risk_management",
+    "esg_performance",
+    "ten_year_summary",
+    "financial_statements"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "gross_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "interest_cover"
+    },
+    {
+      "ref": "roce"
+    },
+    {
+      "ref": "roe"
+    },
+    {
+      "ref": "inventory_days"
+    },
+    {
+      "ref": "receivable_days"
+    },
+    {
+      "ref": "payable_days"
+    },
+    {
+      "ref": "cash_conversion_cycle"
+    },
+    {
+      "ref": "lease_liabilities"
+    },
+    {
+      "id": "unit_sales",
+      "label": "Unit sales volume",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Unit sales volume"
+      ]
+    },
+    {
+      "id": "service_network",
+      "label": "Branch / dealer / service network",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Branch / dealer / service network"
+      ]
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "ev_ebitda"
+    ],
+    "conditional": [
+      "sum_of_parts",
+      "earnings_multiple"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Diversified group: do not apply same-store sales or retail inventory metrics to distribution or service segments."
+  ],
+  "questions": [
+    "How did vehicle import restrictions and currency affect each segment?",
+    "What is inventory ageing and obsolescence risk?"
+  ]
+}

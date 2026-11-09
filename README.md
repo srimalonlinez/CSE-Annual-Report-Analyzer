@@ -20,11 +20,19 @@ No AI in the analysis. Figures are read from the PDF by rules; every ratio, scor
 
 Verified on the Cable Solutions PLC FY2025/26 report: all 26 fields extracted, the 6 identity checks pass, and the results match a manual analysis (CFO/PAT 0.34x, Piotroski 5/9, Altman 6.6, EPS 0.74).
 
+## Sector profiles
+The analysis is driven by one profile per CSE GICS category in `config/sector_profiles/*.json` (19 profiles plus `_cross_sector.json`), built from `CSE_GICS_Sector_Focus_Catalogue_for_Claude.md`. Each profile lists business models (which pick the engine: `industrial`, `lending` for banks and finance companies, `insurer` for SLFRS 17 insurers), the metrics with aliases, formulas, units and status (`report_observed` / `candidate`), profile-configured checks with thresholds, metrics not to use as defaults, and valuation suitability. Profiles are marked `unverified` until checked against their reference PDF with `docs/research/cse-report-review-template.md`.
+
+- After editing or adding a profile: `node scripts/gen-profile-index.mjs` (if files were added) and `node scripts/gen-metric-dictionary.mjs`. `npm test` validates every profile and fails if the dictionary is stale.
+- Report v2 order: identity, summary, core tiles, sector KPIs (reported / from report / derived / not disclosed / not found, with page and formula), segments, sector checks, risk and disclosure, valuation (P/B, residual income and dividend discount for financials; DCF for operating companies; book NAV; sum-of-the-parts outline), observations. Reports saved before v2 keep their original layout.
+
 ## Run / deploy
 ```
 npm install
 cp .env.example .env     # PayHere keys
 npx netlify dev
+npm test                                           # engine regression tests (synthetic data)
+python scripts/make-fixture.py test-fixtures/sample-report.pdf   # rebuild the sample PDF
 node scripts/test-extract.mjs path/to/report.pdf   # check extraction on any report
 ```
 Push to Git → import in Netlify → set `PAYHERE_MERCHANT_ID`, `PAYHERE_SECRET`, `PAYHERE_SANDBOX` → deploy. Add your domain in the PayHere merchant settings.

@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "materials",
+  "display_name": "Materials",
+  "gics": "Materials",
+  "reference_report": {
+    "file": "materials.pdf",
+    "company": "AgStar PLC",
+    "period": "Annual Report 2025/26 (with errata letter)"
+  },
+  "business_models": [
+    {
+      "id": "agri_inputs",
+      "label": "Agricultural inputs (fertiliser, crop care, seeds, machinery)",
+      "engine": "industrial"
+    },
+    {
+      "id": "chemicals_manufacturer",
+      "label": "Chemicals manufacturer",
+      "engine": "industrial"
+    },
+    {
+      "id": "construction_materials",
+      "label": "Construction materials",
+      "engine": "industrial"
+    },
+    {
+      "id": "packaging_paper",
+      "label": "Packaging / paper",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "errata_or_corrections",
+    "financial_highlights",
+    "mdna",
+    "financial_review",
+    "sustainability_report",
+    "risk_management",
+    "financial_statements",
+    "decade_at_a_glance"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "gross_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "interest_cover"
+    },
+    {
+      "ref": "roce"
+    },
+    {
+      "ref": "roe"
+    },
+    {
+      "ref": "inventory_days"
+    },
+    {
+      "ref": "receivable_days"
+    },
+    {
+      "ref": "payable_days"
+    },
+    {
+      "ref": "cash_conversion_cycle"
+    },
+    {
+      "id": "discontinued_result",
+      "label": "Profit / loss from discontinued operations",
+      "category": "accounting",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Profit / loss from discontinued operations"
+      ]
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "ev_ebitda"
+    ],
+    "conditional": [
+      "earnings_multiple",
+      "price_to_book"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "'Materials' is not a business model by itself; check actual operations.",
+    "Distinguish continuing and discontinued operations.",
+    "An errata letter is a linked correction, not the start of the financial report."
+  ],
+  "questions": [
+    "How did each business pillar (fertiliser, crop care, seeds, machinery) perform?"
+  ]
+}

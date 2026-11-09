@@ -1,0 +1,432 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "id": "diversified_financials",
+  "display_name": "Diversified Financials",
+  "gics": "Diversified Financials",
+  "reference_report": {
+    "file": "Diversified Financials.pdf",
+    "company": "Senkadagala Finance PLC",
+    "period": "Annual Report 2025/26"
+  },
+  "business_models": [
+    {
+      "id": "deposit_taking_finance_company",
+      "label": "Licensed deposit-taking finance company",
+      "engine": "lending"
+    },
+    {
+      "id": "leasing_company",
+      "label": "Leasing / specialised leasing company",
+      "engine": "lending"
+    },
+    {
+      "id": "investment_holding",
+      "label": "Investment / finance holding company",
+      "engine": "industrial",
+      "warnings": [
+        "Lending ratios are not applied: classified as a holding company."
+      ]
+    },
+    {
+      "id": "other_financial_services",
+      "label": "Other financial services (broking, advisory, etc.)",
+      "engine": "industrial",
+      "warnings": [
+        "Industrial ratios are a fallback; check they fit this business."
+      ]
+    }
+  ],
+  "sections_to_inspect": [
+    "annual_highlights",
+    "leadership_reviews",
+    "business_model",
+    "financial_capital",
+    "customer_capital",
+    "risk_management",
+    "financial_statements",
+    "notes"
+  ],
+  "metrics": [
+    {
+      "id": "net_interest_income",
+      "label": "Net interest income",
+      "category": "income",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "nii",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Net interest income"
+      ]
+    },
+    {
+      "id": "interest_income",
+      "label": "Interest income",
+      "category": "income",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "interest_income",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Interest income"
+      ]
+    },
+    {
+      "id": "interest_expense",
+      "label": "Interest expense",
+      "category": "income",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "interest_expense",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Interest expense"
+      ]
+    },
+    {
+      "id": "total_operating_income",
+      "label": "Total operating income",
+      "category": "income",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "toi",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Total operating income"
+      ]
+    },
+    {
+      "id": "gross_loans",
+      "label": "Loans, leases and advances",
+      "category": "portfolio",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "loans",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Loans and advances",
+        "Lease rentals receivable",
+        "Hire purchase receivables"
+      ]
+    },
+    {
+      "id": "loan_growth",
+      "label": "Portfolio growth",
+      "category": "portfolio",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "loan_growth",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Portfolio growth"
+      ]
+    },
+    {
+      "id": "impairment_charge",
+      "label": "Impairment / expected credit loss charge",
+      "category": "asset_quality",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "impairment",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Impairment / expected credit loss charge"
+      ]
+    },
+    {
+      "id": "credit_cost",
+      "label": "Impairment charge / portfolio",
+      "category": "asset_quality",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "credit_cost",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Impairment charge / portfolio"
+      ]
+    },
+    {
+      "id": "stage_3_ratio",
+      "label": "Stage 3 / non-performing ratio",
+      "category": "asset_quality",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Stage 3 ratio",
+        "NPL ratio",
+        "Non-performing ratio"
+      ]
+    },
+    {
+      "id": "customer_deposits",
+      "label": "Customer deposits",
+      "category": "funding",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "deposits",
+      "unit": "currency_mn",
+      "scope": "group_or_company",
+      "aliases": [
+        "Customer deposits"
+      ],
+      "applies_when": "Deposit-taking finance companies only."
+    },
+    {
+      "id": "loan_to_deposit",
+      "label": "Portfolio / deposits",
+      "category": "funding",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "loan_to_deposit",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Portfolio / deposits"
+      ]
+    },
+    {
+      "id": "cost_to_income",
+      "label": "Cost-to-income ratio",
+      "category": "efficiency",
+      "status": "candidate",
+      "calculation": "derived",
+      "derive": "cost_to_income",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Cost-to-income ratio"
+      ]
+    },
+    {
+      "id": "reported_nim",
+      "label": "Net interest margin (reported)",
+      "category": "profitability",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Net interest margin",
+        "Spread"
+      ]
+    },
+    {
+      "id": "roa",
+      "label": "Return on assets",
+      "category": "profitability",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "roa",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Return on assets"
+      ]
+    },
+    {
+      "id": "roe",
+      "label": "Return on equity",
+      "category": "profitability",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "roe",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Return on equity"
+      ]
+    },
+    {
+      "id": "total_capital_ratio",
+      "label": "Total capital ratio",
+      "category": "capital_liquidity",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "percent",
+      "scope": "group_or_company",
+      "aliases": [
+        "Total capital ratio"
+      ],
+      "applies_when": "Regulated deposit-taking finance companies."
+    },
+    {
+      "id": "bvps",
+      "label": "Book value per share",
+      "category": "shareholder",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "bvps",
+      "unit": "per_share",
+      "scope": "group_or_company",
+      "aliases": [
+        "Book value per share"
+      ]
+    },
+    {
+      "id": "eps",
+      "label": "Earnings per share",
+      "category": "shareholder",
+      "status": "report_observed",
+      "calculation": "derived",
+      "derive": "eps",
+      "unit": "per_share",
+      "scope": "group_or_company",
+      "aliases": [
+        "Earnings per share"
+      ]
+    },
+    {
+      "id": "branches",
+      "label": "Branch network",
+      "category": "non_financial",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Branch network"
+      ]
+    },
+    {
+      "id": "customers",
+      "label": "Customer base",
+      "category": "non_financial",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "count",
+      "scope": "group_or_company",
+      "aliases": [
+        "Customer base"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "growth",
+      "title": "Portfolio growth",
+      "metric": "loan_growth",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.05,
+      "concern": 0,
+      "points": [
+        "gross_loans",
+        "net_interest_income"
+      ]
+    },
+    {
+      "id": "asset_quality",
+      "title": "Asset quality",
+      "metric": "stage_3_ratio",
+      "type": "level",
+      "direction": "lower_better",
+      "watch": 0.08,
+      "concern": 0.15,
+      "points": [
+        "impairment_charge",
+        "credit_cost"
+      ],
+      "fallback": "credit_cost",
+      "fallback_watch": 0.02,
+      "fallback_concern": 0.04
+    },
+    {
+      "id": "efficiency",
+      "title": "Cost efficiency",
+      "metric": "cost_to_income",
+      "type": "level",
+      "direction": "lower_better",
+      "watch": 0.5,
+      "concern": 0.65
+    },
+    {
+      "id": "funding",
+      "title": "Funding",
+      "metric": "loan_to_deposit",
+      "type": "level",
+      "direction": "lower_better",
+      "watch": 1.3,
+      "concern": 1.6,
+      "points": [
+        "customer_deposits"
+      ],
+      "note": "Finance companies fund partly from borrowings; the threshold is looser than for banks."
+    },
+    {
+      "id": "capital",
+      "title": "Capital adequacy",
+      "metric": "total_capital_ratio",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.14,
+      "concern": 0.125
+    },
+    {
+      "id": "returns",
+      "title": "Returns",
+      "metric": "roe",
+      "type": "level",
+      "direction": "higher_better",
+      "watch": 0.12,
+      "concern": 0.08,
+      "points": [
+        "roa",
+        "reported_nim"
+      ]
+    },
+    {
+      "id": "related_party",
+      "title": "Related-party and concentration",
+      "type": "manual",
+      "points": [
+        "Read the related-party note and concentration risk disclosures."
+      ]
+    }
+  ],
+  "prohibited_generic_metrics": [
+    "current_ratio",
+    "inventory_days",
+    "receivable_days_on_financial_receivables",
+    "fcff_dcf"
+  ],
+  "valuation_methods": {
+    "preferred": [
+      "price_to_book",
+      "residual_income"
+    ],
+    "conditional": [
+      "dividend_discount",
+      "earnings_multiple"
+    ],
+    "avoid_as_default": [
+      "dcf_fcff"
+    ]
+  },
+  "cautions": [
+    "Classify the regulated business model first: not every company in this category takes deposits.",
+    "Do not apply bank ratios unless the business model supports them."
+  ],
+  "questions": [
+    "How is the portfolio split by product (leasing, gold loans, SME), and how is each performing?",
+    "What is the funding mix between deposits and borrowings, and what is the maturity gap?"
+  ]
+}

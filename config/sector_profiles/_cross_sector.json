@@ -1,0 +1,205 @@
+{
+  "id": "_cross_sector",
+  "version": "1.0.0",
+  "description": "Cross-sector derived metrics (catalogue section 3). Sector profiles include these by {\"ref\": id}.",
+  "metrics": [
+    {
+      "id": "revenue_growth",
+      "label": "Revenue growth",
+      "category": "financial_performance",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "revenue_growth",
+      "unit": "percent",
+      "formula": "revenue / last year revenue - 1",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "gross_margin",
+      "label": "Gross margin",
+      "category": "financial_performance",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "gross_margin",
+      "unit": "percent",
+      "formula": "gross profit / revenue",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "operating_margin",
+      "label": "Operating margin",
+      "category": "financial_performance",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "operating_margin",
+      "unit": "percent",
+      "formula": "operating profit (EBIT) / revenue",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "ebitda_margin",
+      "label": "EBITDA margin",
+      "category": "financial_performance",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "ebitda_margin",
+      "unit": "percent",
+      "formula": "(EBIT + depreciation and amortisation) / revenue",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "cfo_to_pat",
+      "label": "Operating cash flow / profit after tax",
+      "category": "financial_performance",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "cfo_to_pat",
+      "unit": "ratio",
+      "formula": "cash from operations / PAT",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "capex_to_revenue",
+      "label": "Capex / revenue",
+      "category": "financial_performance",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "capex_to_revenue",
+      "unit": "percent",
+      "formula": "capital expenditure / revenue",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "payout_ratio",
+      "label": "Dividend payout",
+      "category": "financial_performance",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "payout_ratio",
+      "unit": "percent",
+      "formula": "dividends paid / PAT",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "lease_liabilities",
+      "label": "Lease liabilities (IFRS 16)",
+      "category": "financial_position",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "lease_liabilities",
+      "unit": "currency_mn",
+      "formula": "current + non-current lease liabilities",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "net_debt_to_ebitda",
+      "label": "Net debt / EBITDA",
+      "category": "financial_position",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "net_debt_to_ebitda",
+      "unit": "ratio",
+      "formula": "(borrowings + leases - cash) / EBITDA; n/a unless all inputs are known",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "interest_cover",
+      "label": "Interest cover",
+      "category": "financial_position",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "interest_cover",
+      "unit": "ratio",
+      "formula": "EBIT / finance cost",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "current_ratio",
+      "label": "Current ratio",
+      "category": "financial_position",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "current_ratio",
+      "unit": "ratio",
+      "formula": "current assets / current liabilities",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "inventory_days",
+      "label": "Inventory days",
+      "category": "working_capital",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "inventory_days",
+      "unit": "days",
+      "formula": "inventory / cost of sales x 365",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "receivable_days",
+      "label": "Receivable days",
+      "category": "working_capital",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "receivable_days",
+      "unit": "days",
+      "formula": "receivables / revenue x 365",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "payable_days",
+      "label": "Payable days",
+      "category": "working_capital",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "payable_days",
+      "unit": "days",
+      "formula": "payables / cost of sales x 365",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "cash_conversion_cycle",
+      "label": "Cash conversion cycle",
+      "category": "working_capital",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "cash_conversion_cycle",
+      "unit": "days",
+      "formula": "inventory days + receivable days - payable days",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "roe",
+      "label": "Return on equity",
+      "category": "returns",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "roe",
+      "unit": "percent",
+      "formula": "PAT / year-end equity",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "roce",
+      "label": "Return on capital employed",
+      "category": "returns",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "roce",
+      "unit": "percent",
+      "formula": "EBIT / (total assets - current liabilities)",
+      "scope": "group_or_company"
+    },
+    {
+      "id": "nav_per_share",
+      "label": "Net assets per share",
+      "category": "shareholder",
+      "status": "derived",
+      "calculation": "derived",
+      "derive": "nav_per_share",
+      "unit": "per_share",
+      "formula": "total equity / shares (shares = PAT / EPS)",
+      "scope": "group_or_company"
+    }
+  ]
+}

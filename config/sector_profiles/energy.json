@@ -1,0 +1,145 @@
+{
+  "version": "1.0.0",
+  "verification": {
+    "status": "unverified",
+    "note": "Drafted from CSE_GICS_Sector_Focus_Catalogue_for_Claude.md. Not yet checked against the reference PDF; KPI 'report_observed' status follows the catalogue's description of that report."
+  },
+  "engine_default": "industrial",
+  "prohibited_generic_metrics": [],
+  "id": "energy",
+  "display_name": "Energy",
+  "gics": "Energy",
+  "reference_report": {
+    "file": "energy.pdf",
+    "company": "LAUGFS Gas PLC",
+    "period": "Annual Report 2024/25"
+  },
+  "business_models": [
+    {
+      "id": "multi_cluster_group",
+      "label": "Multi-cluster group (energy, logistics, trading, property)",
+      "engine": "industrial",
+      "diversified": true,
+      "warnings": [
+        "Diversified group: keep segment facts separate from consolidated figures; enter segments in the review step."
+      ]
+    },
+    {
+      "id": "lpg_import_distribution",
+      "label": "LPG / fuel import and distribution",
+      "engine": "industrial"
+    }
+  ],
+  "sections_to_inspect": [
+    "financial_highlights",
+    "non_financial_highlights",
+    "cluster_reviews",
+    "operating_environment",
+    "risk_report",
+    "five_year_summary",
+    "real_estate_portfolio"
+  ],
+  "metrics": [
+    {
+      "ref": "revenue_growth"
+    },
+    {
+      "ref": "gross_margin"
+    },
+    {
+      "ref": "operating_margin"
+    },
+    {
+      "ref": "ebitda_margin"
+    },
+    {
+      "ref": "cfo_to_pat"
+    },
+    {
+      "ref": "capex_to_revenue"
+    },
+    {
+      "ref": "net_debt_to_ebitda"
+    },
+    {
+      "ref": "interest_cover"
+    },
+    {
+      "ref": "roce"
+    },
+    {
+      "ref": "roe"
+    },
+    {
+      "ref": "inventory_days"
+    },
+    {
+      "ref": "receivable_days"
+    },
+    {
+      "ref": "payable_days"
+    },
+    {
+      "ref": "cash_conversion_cycle"
+    },
+    {
+      "id": "sales_volume",
+      "label": "Sales / distribution volume",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "unit_volume",
+      "scope": "group_or_company",
+      "aliases": [
+        "Sales / distribution volume"
+      ],
+      "interpretation": "Use the report's unit (MT, litres)."
+    },
+    {
+      "id": "storage_capacity",
+      "label": "Storage / terminal capacity",
+      "category": "operations",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "unit_volume",
+      "scope": "group_or_company",
+      "aliases": [
+        "Storage / terminal capacity"
+      ]
+    },
+    {
+      "id": "fx_exposure_note",
+      "label": "Foreign-currency exposure disclosed (page)",
+      "category": "risk",
+      "status": "candidate",
+      "calculation": "reported",
+      "input": "entry",
+      "unit": "text",
+      "scope": "group_or_company",
+      "aliases": [
+        "Foreign-currency exposure disclosed (page)"
+      ]
+    }
+  ],
+  "checks": [],
+  "valuation_methods": {
+    "preferred": [
+      "dcf_fcff",
+      "ev_ebitda"
+    ],
+    "conditional": [
+      "sum_of_parts"
+    ],
+    "avoid_as_default": []
+  },
+  "cautions": [
+    "Separate energy, transport/logistics, trading and property clusters.",
+    "Use volume or capacity measures only when explicitly reported."
+  ],
+  "questions": [
+    "How are procurement costs and FX passed through to selling prices?",
+    "What is the contribution of each cluster to profit?"
+  ]
+}
